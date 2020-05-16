@@ -3,4 +3,40 @@
 {% block content %}
 Welcome to QuarinTweet!
 
+<div id="tweets">
+    Replace
+</div>
+
+
+<script>
+   const tweetsEl = document.getElementById("tweets")
+   tweetsEl.innerHTML = 'Loading...'
+   
+   var el1 = ""
+   const xhr = new XMLHttpRequest()
+   const method = 'GET' // "POST"
+   const url = "/tweets"
+   const responseType = "json"
+   
+   
+   //get the json data
+   xhr.responseType = responseType
+   //open request
+   xhr.open(method, url)
+   //when loaded log response
+   xhr.onload = function() {
+       const serverResponse = xhr.response
+       const listedItems = serverResponse.response
+       var finalTweetStr = "" 
+       var i;
+       for (i=0; i < listedItems.length; i++){
+           console.log(i)
+           console.log(listedItems[i])
+       }   
+    }
+
+   xhr.send()
+</script>
+
+
 {% endblock content %}
