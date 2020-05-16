@@ -27,12 +27,15 @@ Welcome to QuarinTweet!
    xhr.onload = function() {
        const serverResponse = xhr.response
        const listedItems = serverResponse.response
-       var finalTweetStr = "" 
+       var tweetStr = "" 
        var i;
        for (i=0; i < listedItems.length; i++){
            console.log(i)
            console.log(listedItems[i])
+           var currentItem = "<h1>" + listedItems[i].id + "</h1>" + "<p>" + listedItems[i].content + "</p>"
+                tweetStr += currentItem
        }   
+       tweetsEl.innerHTML = tweetStr
     }
 
    xhr.send()
