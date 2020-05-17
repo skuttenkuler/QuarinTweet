@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Welcome to QuarinTweet!
 
-<div id="tweets">
-    Replace
+<div class="row text-center">
+    <div class='col'>
+        QuarinTweet
+    </div>
+</div>
+<div class="row" id="tweets">
+    Loading...
 </div>
 
 
@@ -17,7 +21,20 @@ Welcome to QuarinTweet!
    const method = 'GET' // "POST"
    const url = "/tweets"
    const responseType = "json"
+
+
+   function handleLiked(tweed_id, currentCount){
+        console.log(tweed_id, currentCount)
+   }
+   function LikeButton(tweet){
+        return "<button class='btn btn-primary btn-sm' onclick=handleLiked(" + 
+        tweet.id + "," + tweet.likes + ")>" + tweet.likes + "Like</button>"
+   }
    
+   function formatTweet(tweet){
+    var formattedTweet = "<div class='col-12 col-md-10 mx-auto border-bottom py-3 mb-4 tweet' id='tweet-" + tweet.id + "''><p>" + tweet.content + "</p><div class'btn-group>" + LikeButton(tweet) + "</div></div>"
+    return formattedTweet
+   }
    
    //get the json data
    xhr.responseType = responseType
@@ -30,9 +47,8 @@ Welcome to QuarinTweet!
        var tweetStr = "" 
        var i;
        for (i=0; i < listedItems.length; i++){
-           console.log(i)
-           console.log(listedItems[i])
-           var currentItem = "<h1>" + listedItems[i].id + "</h1>" + "<p>" + listedItems[i].content + "</p>"
+           tweetObj = listedItems[i]
+           var currentItem = formatTweet(tweetObj)
                 tweetStr += currentItem
        }   
        tweetsEl.innerHTML = tweetStr
