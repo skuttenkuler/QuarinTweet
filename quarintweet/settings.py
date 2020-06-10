@@ -25,8 +25,9 @@ SECRET_KEY = '0j-5fz)mq($mzxv!=t%9+3t$sp-qlo&24k-mt3bwx_n-p-kei4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
+MAX_TWEET_LENGTH = 240
 
 # Application definition
 
